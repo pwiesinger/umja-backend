@@ -11,6 +11,10 @@ public class Project {
         packages = new HashMap<>();
     }
 
+    public Map<String, ArrayList<ClassFile>> getPackages() {
+        return packages;
+    }
+
     public void addClassFile(String packageName, ClassFile classFile) {
         packages.computeIfAbsent(packageName, k -> new ArrayList<>());
         packages.get(packageName).add(classFile);
