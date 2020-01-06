@@ -22,7 +22,7 @@ public class Attribute {
         this.name = name;
     }
 
-    public static List<Attribute> parseMethods(String raw) {
+    public static List<Attribute> parseAttributes(String raw) {
         if (raw.contains("<html>")) {
             return parseHTML(raw);
         } else {
@@ -39,10 +39,14 @@ public class Attribute {
             String rawLine = matcher.group().trim();
             boolean isStatic = rawLine.contains("<u>") || rawLine.contains("</u>");
             boolean isPublic = rawLine.startsWith("+");
-            String[] items = rawLine.replaceAll("[+|-]","").split(":");
+            String[] items = rawLine.replaceAll("[+|-]","")
+                    .replace("<u>", "")
+                    .replace("</u>", "")
+                    .replace("<br>", "")
+                    .split(":");
             String name = items[0].trim();
             String type = items[1].trim();
-
+            boolean isu = UppercaseUtil.isUppercase("ASDFASDFA");
             attributes.add(new Attribute(isPublic, isStatic, UppercaseUtil.isUppercase(name), type, name));
         }
 
