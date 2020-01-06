@@ -16,16 +16,13 @@ import java.io.IOException;
 
 public class Parser {
 
-    private File graphFile;
     private Document document;
 
     public Parser(File file) throws ParserConfigurationException, IOException, SAXException {
-        this.graphFile = file;
-
         // parse xml document
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        this.document = documentBuilder.parse(graphFile);
+        this.document = documentBuilder.parse(file);
         this.document.setXmlStandalone(false);
     }
 
@@ -49,8 +46,8 @@ public class Parser {
     public Project parse() {
         NodeList nodes = document.getElementsByTagName("node");
         Project project = new Project();
-        // iterating through the node entries, here we will mostly catch the groups
 
+        // iterating through the node entries, here we will mostly catch the groups
         for (int i = 0; i < nodes.getLength(); i++) {
             Element element = (Element) nodes.item(i);
             System.out.println(element.getAttribute("id"));
@@ -81,8 +78,8 @@ public class Parser {
 
     private ClassFile parseNode(Element element) {
         String name = getTextContent(element, "y:NodeLabel");
-        String parameters = getTextContent(element, "y:AttributeLabel");
+        String attributes = getTextContent(element, "y:AttributeLabel");
         String methods = getTextContent(element, "y:MethodLabel");
-        return new ClassFile(name, methods, parameters);
+        return new ClassFile(name, methods, attributes);
     }
 }
