@@ -13,6 +13,7 @@ public class ClassFile {
 //        System.out.println(methodsRaw);
         System.out.println();
         System.out.println(attributesRaw);
+
         methods = Method.parseMethods(methodsRaw);
     }
 }

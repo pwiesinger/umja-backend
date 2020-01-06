@@ -31,7 +31,42 @@ public class Method {
     }
 
     private static List<Method> parseHTML(String raw) {
-        return null;
+        List<Method> methods = new ArrayList<>();
+
+        Pattern FIND_METHODS = Pattern.compile("[-|+].*(<br>)*");
+        Pattern NAME_PATTERN = Pattern.compile("\\w*(?=\\()");
+        Pattern RETURN_TYPE = Pattern.compile("(?<=(\\)\\s:\\s)).+");
+        Pattern PARAMETER_PAIR = Pattern.compile("\\w+\\s*:\\s*[^\\)\\,]*");
+
+        raw = raw.replace("<html>", "").replace("</html>", "");
+
+        Matcher matcher = FIND_METHODS.matcher(raw);
+        while(matcher.find()) {
+            String rawLine = matcher.group();
+            boolean isStatic = rawLine.contains("<u>") || rawLine.contains("</u>");
+            boolean isPublic = rawLine.startsWith("+");
+            rawLine = rawLine.replace("<u>", "")
+                    .replace("</u>", "").replace("<br>", "")
+                    .trim();
+            Matcher m2 = NAME_PATTERN.matcher(rawLine);
+            m2.find();
+            String name = m2.group();
+
+            m2 = RETURN_TYPE.matcher(rawLine);
+            String returnType = m2.find() ? m2.group() : null;
+
+            List<String> parameters = new ArrayList<>();
+            m2 = PARAMETER_PAIR.matcher(rawLine);
+            while (m2.find()) {
+                String pair = m2.group();
+                String[] items = pair.split(":");
+                parameters.add(items[1].trim() + " " + items[0].trim());
+            }
+
+            methods.add(new Method(name, returnType, parameters, isStatic, isPublic));
+        }
+
+        return methods;
     }
 
     private static List<Method> parseRegular(String raw) {
@@ -39,7 +74,7 @@ public class Method {
 
         Pattern NAME_PATTERN = Pattern.compile("\\w*(?=\\()");
         Pattern RETURN_TYPE = Pattern.compile("(?<=(\\)\\s:\\s)).+");
-        Pattern PARAMETER_PAIR = Pattern.compile("\\w+\\s*:\\s*\\w*");
+        Pattern PARAMETER_PAIR = Pattern.compile("\\w+\\s*:\\s*[^\\)\\,]*");
 
         String[] lines = raw.split("\n");
         for (String line : lines) {
