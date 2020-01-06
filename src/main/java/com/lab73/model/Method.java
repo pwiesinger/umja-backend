@@ -3,8 +3,11 @@ package com.lab73.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Method {
+
     private String name;
     private String returnType;
     private List<String> parameters;
@@ -34,37 +37,28 @@ public class Method {
     private static List<Method> parseRegular(String raw) {
         List<Method> methods = new ArrayList<>();
 
+        Pattern NAME_PATTERN = Pattern.compile("\\w*(?=\\()");
+        Pattern RETURN_TYPE = Pattern.compile("(?<=(\\)\\s:\\s)).+");
+        Pattern PARAMETER_PAIR = Pattern.compile("\\w+\\s*:\\s*\\w*");
+
         String[] lines = raw.split("\n");
         for (String line : lines) {
             if (!line.trim().equals("")) {
-                StringTokenizer stringTokenizer = new StringTokenizer(line);
-                boolean isPublic = stringTokenizer.nextToken().equals("+");
-                String[] components = stringTokenizer.nextToken().split("\\(");
-                String name = components[0];
+                boolean isPublic = line.startsWith("+");
 
-                //stringTokenizer = new StringTokenizer(components[1]);
+                Matcher matcher = NAME_PATTERN.matcher(line);
+                matcher.find();
+                String name = matcher.group();
+
+                matcher = RETURN_TYPE.matcher(line);
+                String returnType = matcher.find() ? matcher.group() : null;
+
                 List<String> parameters = new ArrayList<>();
-
-
-                
-                String lastParameterName = null;
-                if (!components[1].equals(")")) lastParameterName = components[1];
-                for (int i = 0; stringTokenizer.hasMoreTokens(); i++) {
-                    String next = stringTokenizer.nextToken();
-                    if (next.equals(")")) break;
-                    if (lastParameterName != null) {
-                        String type = next.replace(",", "").replace("\\)", "");
-                        parameters.add(type + " " + lastParameterName);
-                        lastParameterName = null;
-                    } else {
-                        lastParameterName = next;
-                    }
-                }
-
-                String returnType = null;
-                if (stringTokenizer.hasMoreTokens()) {
-                    stringTokenizer.nextToken(); // :
-                    returnType = stringTokenizer.nextToken();
+                matcher = PARAMETER_PAIR.matcher(line);
+                while (matcher.find()) {
+                    String pair = matcher.group();
+                    String[] items = pair.split(":");
+                    parameters.add(items[1].trim() + " " + items[0].trim());
                 }
 
                 methods.add(new Method(name, returnType, parameters, false, isPublic));
