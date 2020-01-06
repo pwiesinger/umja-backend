@@ -9,10 +9,10 @@ public class ClassFile {
 
     public ClassFile(String name, String methodsRaw, String attributesRaw) {
         this.name = name;
-        System.out.println("---------------");
-        System.out.println(methodsRaw);
-//        System.out.println();
-//        System.out.println(attributesRaw);
+//        System.out.println("---------------");
+//        System.out.println(methodsRaw);
+        System.out.println();
+        System.out.println(attributesRaw);
         methods = Method.parseMethods(methodsRaw);
     }
 }
