@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="578fbc5f-a619-411b-bcbb-8f6d295c2eee" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1W037rqQ8NaNZfYS1fTCi6WarIt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/4 AHIF/Project Archer - SYP/Frontend" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="umja" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lab73.main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.lab73.main.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.Application" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="578fbc5f-a619-411b-bcbb-8f6d295c2eee" name="Default Changelist" comment="" />
+      <created>1578272520456</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1578272520456</updated>
+      <workItem from="1578272522832" duration="290000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="-852" y="-62" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1578272674695">
+      <screen x="-1920" y="-464" width="1920" height="996" />
+    </state>
+    <state x="-852" y="-62" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/-1920.-464.1920.996/0.23.1440.877@-1920.-464.1920.996" timestamp="1578272674695" />
+    <state x="-1275" y="-265" key="new project wizard" timestamp="1578272569638">
+      <screen x="-1920" y="-464" width="1920" height="996" />
+    </state>
+    <state x="-1275" y="-265" key="new project wizard/-1920.-464.1920.996/0.23.1440.877@-1920.-464.1920.996" timestamp="1578272569638" />
+  </component>
+</project>
