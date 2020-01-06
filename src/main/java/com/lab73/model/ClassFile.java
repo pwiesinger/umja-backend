@@ -30,6 +30,8 @@ public class ClassFile {
                 default:
                     this.stereotype = Stereotypes.CLASS;
             }
+        } else {
+            this.stereotype = Stereotypes.CLASS;
         }
 
         if (this.stereotype != Stereotypes.ENUM) {
@@ -42,9 +44,39 @@ public class ClassFile {
             if (matcher.find()) {
                 enumCases = new ArrayList<>();
                 do {
-                    enumCases.add(matcher.group());
+                    String attr = matcher.group();
+                    if (!attr.equals("")) enumCases.add(attr);
                 } while(matcher.find());
             }
         }
+    }
+
+
+    public String generateFileContent(String packageName) {
+        StringBuilder stringBuilder  = new StringBuilder();
+        stringBuilder.append("package " + packageName + ";\n");
+        stringBuilder.append("\n");
+        String[] a = packageName.split("\\.");
+        stringBuilder.append("import " + packageName.split("\\.")[0] + ".*;\n");
+        stringBuilder.append("import java.util.*;\n"); // should cover most of the things used...
+        stringBuilder.append("\n");
+        stringBuilder.append("public " + stereotype.toString().toLowerCase() + " " + name + "{\n");
+        stringBuilder.append("\n");
+
+        if (stereotype != Stereotypes.ENUM) {
+            for (Attribute attribute : attributes) {
+                stringBuilder.append(attribute + "\n");
+            }
+            for (Method method : methods) {
+                stringBuilder.append(method.toString(stereotype == Stereotypes.INTERFACE) + "\n");
+            }
+        } else {
+            stringBuilder.append(String.join(", ", enumCases) + ";\n");
+        }
+
+        stringBuilder.append("}");
+
+
+        return stringBuilder.toString();
     }
 }

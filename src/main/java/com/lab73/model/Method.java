@@ -101,4 +101,36 @@ public class Method {
 
         return methods;
     }
+
+    public String toString(boolean isInterface) {
+        String base = (isPublic ? "public " : "private ") + (isStatic ? "static " : "") +  returnType + " " + name + "(" + String.join(", ", parameters) + ")";
+
+        if (isInterface) {
+            base += ";";
+        } else {
+            base += " {\n";
+            if (returnType != null) {
+                switch (returnType) {
+                    case ("void"):
+                        break;
+                    case ("int"):
+                    case ("byte"):
+                    case ("double"):
+                    case ("float"):
+                    case ("short"):
+                        base += "return 0;";
+                        break;
+                    case ("char"):
+                        base += "return 'c';";
+                        break;
+                    default:
+                        base += "return null;";
+                        break;
+                }
+            }
+            base += "\n}";
+        }
+
+        return base;
+    }
 }

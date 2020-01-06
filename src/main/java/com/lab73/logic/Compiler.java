@@ -3,43 +3,46 @@ package com.lab73.logic;
 import com.lab73.model.ClassFile;
 import com.lab73.model.Project;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Compiler {
 
     private Project project;
+    private String uid;
 
     public Compiler(Project project) {
         this.project = project;
+        this.uid = UUID.randomUUID().toString();
     }
 
     public void writeOutFiles() {
-        for (String packageName : project.getPackages().keySet())  {
-            File theDir = new File("/Users/davidgangl/Desktop/AUD/src/main/java/com/lab73/testProject/" + packageName);
 
-            if (!theDir.exists()) {
-                System.out.println("creating directory: " + theDir.getName());
-                boolean result = false;
+        // creating packages
 
-                try{
-                    theDir.mkdir();
-                    result = true;
-                }
-                catch(SecurityException se){
-                    //handle it
-                }
-                if(result) {
-                    System.out.println("DIR created");
+        File root = new File("conversions/" + uid + "/generatedProject");
+        root.mkdirs();
+
+        for (String packageName : project.getPackages().keySet()){
+            File packageFile = new File(root.getPath() + "/" + packageName.replace(".", "/"));
+            packageFile.mkdirs();
+
+            // writing source Files
+            ArrayList<ClassFile> classFiles = project.getPackages().get(packageName);
+
+            for (ClassFile classFile :
+                    classFiles) {
+                String content = classFile.generateFileContent(packageName);
+                try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File(packageFile.getPath() + "/" + classFile.name + ".java")))) {
+                    bw.write(content);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
                 }
             }
-
-
-            ArrayList<ClassFile> classFile = project.getPackages().get(packageName);
         }
     }
 
@@ -49,5 +52,10 @@ public class Compiler {
 
     public void generateZip() {
 
+    }
+
+    public void cleanUp() {
+        File file = new File("conversions/" + uid);
+        file.delete();
     }
 }

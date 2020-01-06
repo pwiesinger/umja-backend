@@ -69,4 +69,9 @@ public class Attribute {
 
         return attributes;
     }
+
+    @Override
+    public String toString() {
+        return (isPublic ? "public " : "private ") + (isStatic ? "static " : "") + (isFinal ? "final " : "") + type + " " + name + ";";
+    }
 }
