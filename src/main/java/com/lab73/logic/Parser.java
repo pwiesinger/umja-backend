@@ -80,6 +80,11 @@ public class Parser {
         String name = getTextContent(element, "y:NodeLabel");
         String attributes = getTextContent(element, "y:AttributeLabel");
         String methods = getTextContent(element, "y:MethodLabel");
-        return new ClassFile(name, methods, attributes);
+        String stereotype = getStereotypeRaw(element);
+        return new ClassFile(name, methods, attributes, stereotype);
+    }
+
+    private String getStereotypeRaw(Element element) {
+        return ((Element)element.getElementsByTagName("y:UML").item(0)).getAttribute("stereotype");
     }
 }
