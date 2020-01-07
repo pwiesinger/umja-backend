@@ -74,7 +74,7 @@ public class Compiler {
 
     public File generateZip() {
         File zipFile = new File("conversions/"+ uid + "/umja_files.zip");
-        ZipUtil.pack(root, zipFile);
+        ZipUtil.pack(new File("conversions/" + uid), zipFile);
         return zipFile;
     }
 
@@ -95,13 +95,14 @@ public class Compiler {
 
 
     public static File getErrorFile() throws IOException {
-        File error = new File("error.txt");
+        File error = new File("error.zip");
         if (error.exists()) {
             return error;
         } else {
-            FileWriter fw = new FileWriter(error);
+            FileWriter fw = new FileWriter(new File("error.txt"));
             fw.write("Es gab Probleme beim Parsen überprüfe deinen Syntax!");
             fw.flush();
+            ZipUtil.pack(new File("error.txt"), error);
             return error;
         }
     }
