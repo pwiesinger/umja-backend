@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class OfflineMain {
-    public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException {
+    /*public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException {
         File file = new File("sample/uml_v3.graphml");
         Parser parser = new Parser(file);
         Project project = parser.parse();
@@ -19,5 +19,5 @@ public class OfflineMain {
         compiler.writeOutFiles();
         //compiler.tryToCompile();
         compiler.generateZip();
-    }
+    }*/
 }
