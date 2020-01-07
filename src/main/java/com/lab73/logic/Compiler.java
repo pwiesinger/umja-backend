@@ -99,10 +99,13 @@ public class Compiler {
         if (error.exists()) {
             return error;
         } else {
-            FileWriter fw = new FileWriter(new File("error.txt"));
+            File file = new File("error");
+            file.mkdirs();
+            FileWriter fw = new FileWriter(new File("error/error.txt"));
             fw.write("Es gab Probleme beim Parsen überprüfe deinen Syntax!");
             fw.flush();
-            ZipUtil.pack(new File("error.txt"), error);
+            ZipUtil.pack(new File("error/error.txt"), error);
+
             return error;
         }
     }

@@ -20,4 +20,8 @@ public class OfflineMain {
         //compiler.tryToCompile();
         compiler.generateZip();
     }*/
+
+    public static void main(String[] args) throws IOException {
+        Compiler.getErrorFile();
+    }
 }
