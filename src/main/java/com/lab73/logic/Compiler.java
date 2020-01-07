@@ -104,8 +104,7 @@ public class Compiler {
             FileWriter fw = new FileWriter(new File("error/error.txt"));
             fw.write("Es gab Probleme beim Parsen überprüfe deinen Syntax!");
             fw.flush();
-            ZipUtil.pack(new File("error/error.txt"), error);
-
+            ZipUtil.pack(new File("error"), error);
             return error;
         }
     }
