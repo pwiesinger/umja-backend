@@ -80,6 +80,9 @@ public class Controller {
         }
         Resource resource = new UrlResource(generated.toURI());
 
+        System.out.println(generated);
+        
+
         //compiler.cleanUp();
 
         return ResponseEntity.ok()
