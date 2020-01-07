@@ -95,7 +95,7 @@ public class Compiler {
 
 
     public static File getErrorFile() throws IOException {
-        File error = new File("error.zip");
+        File error = new File("umja_files.zip");
         if (error.exists()) {
             return error;
         } else {
