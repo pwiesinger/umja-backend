@@ -36,7 +36,7 @@ public class Attribute {
         Pattern FIND_METHODS = Pattern.compile("[+|-].*(<br>)*");
         Matcher matcher = FIND_METHODS.matcher(raw);
         while(matcher.find()) {
-            String rawLine = matcher.group().trim();
+            String rawLine = matcher.group().trim().replace("</html>", "").replace("<html>", "");
             boolean isStatic = rawLine.contains("<u>") || rawLine.contains("</u>");
             boolean isPublic = rawLine.startsWith("+");
             String[] items = rawLine.replaceAll("[+|-]","")

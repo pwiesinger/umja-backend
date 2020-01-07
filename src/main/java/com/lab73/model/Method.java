@@ -103,7 +103,7 @@ public class Method {
     }
 
     public String toString(boolean isInterface) {
-        String base = (isPublic ? "public " : "private ") + (isStatic ? "static " : "") +  returnType + " " + name + "(" + String.join(", ", parameters) + ")";
+        String base = (isPublic ? "public " : "private ") + (isStatic ? "static " : "") +  (returnType != null ? returnType : "") + " " + name + "(" + String.join(", ", parameters) + ")";
 
         if (isInterface) {
             base += ";";

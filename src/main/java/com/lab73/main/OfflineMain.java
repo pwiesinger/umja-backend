@@ -17,5 +17,7 @@ public class OfflineMain {
 
         Compiler compiler = new Compiler(project);
         compiler.writeOutFiles();
+        //compiler.tryToCompile();
+        compiler.generateZip();
     }
 }
