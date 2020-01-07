@@ -73,7 +73,7 @@ public class Compiler {
     }*/
 
     public File generateZip() {
-        File zipFile = new File("conversions/"+ uid + "/umja.zip");
+        File zipFile = new File("conversions/"+ uid + "/umja_files.zip");
         ZipUtil.pack(root, zipFile);
         return zipFile;
     }
