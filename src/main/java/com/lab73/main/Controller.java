@@ -65,7 +65,9 @@ public class Controller {
             e.printStackTrace();
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
-        } finally {
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }finally {
             file.delete();
         }
 
